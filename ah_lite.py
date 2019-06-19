@@ -4,27 +4,27 @@ import json
 
 
 @click.group()
-def main():
+def ah():
     """
     Simple CLI for consuming Authors Haven API
     """
     pass
 
 
-@main.command()
+@ah.command()
 def list():
     """This returns a list of articles on Authors Haven"""
     url_format = 'http://ah-premier-staging.herokuapp.com/api/articles'
-    response = requests.get(url_format)
-
-    data = response.json()
     try:
+        response = requests.get(url_format)
+        response.raise_for_status()
+        data = response.json()
         click.echo(json.dumps(data, indent=2))
     except Exception:
-        click.echo("Oops, articles listing failed")
+        click.secho("Oops, articles listing failed", fg="red")
 
 
-@main.command()
+@ah.command()
 @click.argument('slug')
 def view(slug):
     """
@@ -32,16 +32,16 @@ def view(slug):
     """
     url_format = 'http://ah-premier-staging.herokuapp.com/api/articles/{}'
     click.echo(slug)
-    response = requests.get(url_format.format(slug))
-
-    data = response.json()
     try:
+        response = requests.get(url_format.format(slug))
+        response.raise_for_status()
+        data = response.json()
         click.echo(json.dumps(data, indent=2))
     except Exception as error:
-        click.echo(str(error))
+        click.secho(str(error), fg="red")
 
 
-@main.command()
+@ah.command()
 @click.argument('slug')
 def save(slug):
     """
@@ -49,16 +49,12 @@ def save(slug):
     """
     url_format = 'http://ah-premier-staging.herokuapp.com/api/articles/{}'
     click.echo(slug)
-    response = requests.get(url_format.format(slug))
-
-    data = response.json()
     try:
+        response = requests.get(url_format.format(slug))
+        response.raise_for_status()
+        data = response.json()
         click.echo(json.dumps(data, indent=2))
         with open('articles/article.json', 'w') as outfile:
             json.dump(data, outfile)
     except Exception as error:
-        click.echo(str(error))
-
-
-if __name__ == '__main__':
-    main()
+        click.secho(str(error), fg="red")
