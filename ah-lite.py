@@ -18,7 +18,10 @@ def list():
     response = requests.get(url_format)
 
     data = response.json()
-    click.echo(json.dumps(data, indent=2))
+    try:
+        click.echo(json.dumps(data, indent=2))
+    except Exception:
+        click.echo("Oops, articles listing failed")
 
 
 @main.command()
@@ -32,7 +35,10 @@ def view(slug):
     response = requests.get(url_format.format(slug))
 
     data = response.json()
-    click.echo(json.dumps(data, indent=2))
+    try:
+        click.echo(json.dumps(data, indent=2))
+    except Exception as error:
+        click.echo(str(error))
 
 
 @main.command()
@@ -46,9 +52,12 @@ def save(slug):
     response = requests.get(url_format.format(slug))
 
     data = response.json()
-    click.echo(json.dumps(data, indent=2))
-    with open('articles/article.json', 'w') as outfile:
-        json.dump(data, outfile)
+    try:
+        click.echo(json.dumps(data, indent=2))
+        with open('articles/article.json', 'w') as outfile:
+            json.dump(data, outfile)
+    except Exception as error:
+        click.echo(str(error))
 
 
 if __name__ == '__main__':
