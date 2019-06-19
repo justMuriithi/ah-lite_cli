@@ -1,0 +1,14 @@
+from setuptools import setup
+
+setup(
+    name="ah_lite",
+    version='1.0',
+    py_modules=['ah_lite'],
+    install_requires=[
+        'click', 'requests',
+    ],
+    entry_points='''
+        [console_scripts]
+        ah=ah_lite:ah
+    ''',
+)

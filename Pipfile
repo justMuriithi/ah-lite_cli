@@ -8,7 +8,7 @@ verify_ssl = true
 [packages]
 click = "*"
 requests = "*"
-json-tool = "*"
+ah-lite = {editable = true,path = "."}
 
 [requires]
 python_version = "3.7"
