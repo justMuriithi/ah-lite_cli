@@ -12,11 +12,23 @@ def ah():
 
 
 @ah.command()
-def list():
+@click.option('--limit', default=10, type=str,
+              help='Limit how many articles are displayed')
+@click.option('--search', type=str,
+              help='Enter name to filter the articles by author')
+def list(limit, search):
     """This returns a list of articles on Authors Haven"""
     url_format = 'http://ah-premier-staging.herokuapp.com/api/articles'
     try:
-        response = requests.get(url_format)
+        if limit and not search:
+            response = requests.get(url_format + '?page_size=' + str(limit))
+        elif search and not limit:
+            response = requests.get(url_format + '?author=' + str(search))
+        elif search and limit:
+            response = requests.get(
+                url_format + '?page_size={}&author={}'.format(limit, search))
+        else:
+            response = requests.get(url_format)
         response.raise_for_status()
         data = response.json()
         click.echo(json.dumps(data, indent=2))
