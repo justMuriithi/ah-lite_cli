@@ -1,0 +1,10 @@
+language: python
+
+python:
+  - "3.7"
+install:
+  - pip install --editable .
+script:
+  - pytest --cov=ah_lite
+after_success:
+  - coveralls

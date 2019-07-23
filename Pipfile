@@ -9,6 +9,10 @@ verify_ssl = true
 click = "*"
 requests = "*"
 ah-lite = {editable = true,path = "."}
+coverage = "*"
+coveralls = "*"
+pytest = "*"
+pytest-cov = "*"
 
 [requires]
 python_version = "3.7"

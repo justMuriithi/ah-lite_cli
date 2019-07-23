@@ -5,7 +5,7 @@ setup(
     version='1.0',
     py_modules=['ah_lite'],
     install_requires=[
-        'click', 'requests',
+        'click', 'requests', 'pytest', 'pytest-cov',
     ],
     entry_points='''
         [console_scripts]
