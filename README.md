@@ -6,12 +6,12 @@
 - Navigate to the main directory and run `pip install --editable .`
 - You can now run the commands
 ### Available commands
-- ah --help - get help information for the main command.
-- ah view --help - get help information for sub-command view.
-- ah list --help - get help information for sub-command list.
-- ah view <article_slug> - get a single article from the database and display it.
-- ah save <article_slug> - get a single article and save it in a docs folder as a json file.
-- ah list - get all articles. Limit is default to two articles.
-- ah list --limit <str> - set the limit of how many articles can be viewed.
-- ah list --search <author_name> - Allows user to search article with the author name.
+- `ah --help` - get help information for the main command.
+- `ah view --help` - get help information for sub-command view.
+- `ah list --help` - get help information for sub-command list.
+- `ah view <article_slug>` - get a single article from the database and display it.
+- `ah save <article_slug>` - get a single article and save it in a docs folder as a json file.
+- `ah list` - get all articles. Limit is default to two articles.
+- `ah list --limit <str>` - set the limit of how many articles can be viewed.
+- `ah list --search <author_name>` - Allows user to search article with the author name.
 N.B. - you can use all options at the same time, for example, ah list --limit 10 --search benson will return the first ten articles written by the author Benson.

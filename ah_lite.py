@@ -66,7 +66,7 @@ def save(slug):
         response.raise_for_status()
         data = response.json()
         click.echo(json.dumps(data, indent=2))
-        with open('articles/article.json', 'w') as outfile:
+        with open('articles/{}.json'.format(slug), 'w') as outfile:
             json.dump(data, outfile)
     except Exception as error:
         click.secho(str(error), fg="red")

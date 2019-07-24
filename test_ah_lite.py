@@ -9,6 +9,21 @@ def test_success_get_all_articles():
     assert result.exit_code == 0
 
 
+def test_success_get_all_articles_limit_search():
+    result = runner.invoke(list, '--limit 5', '--search benson')
+    assert result.exit_code == 0
+
+
+def test_success_get_all_articles_limit():
+    result = runner.invoke(list, '--limit 5')
+    assert result.exit_code == 0
+
+
+def test_success_get_all_articles_search():
+    result = runner.invoke(list, '--search benson')
+    assert result.exit_code == 0
+
+
 def test_failed_get_all_articles():
     result = runner.invoke(list)
     assert result.exit_code == 0
